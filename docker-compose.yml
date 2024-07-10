@@ -1,0 +1,14 @@
+version: "2.1"
+services:
+  # https://hub.docker.com/r/itsthenetwork/nfs-server-alpine
+  nfs:
+    image: docker-nfs-worker:latest
+    container_name: nfs
+    restart: unless-stopped
+    privileged: true
+    environment:
+      - SHARED_DIRECTORY=/data
+    volumes:
+      - ./workspace:/data
+    ports:
+      - 32049:2049
